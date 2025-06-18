@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Material+Icons" rel="stylesheet" />
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Great+Vibes&family=Playwrite+DK+Loopet:wght@100..400&display=swap');
+</style>
+<style>
+  /* Reset and base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: "Dancing Script", cursive;
+    background: linear-gradient(135deg, #e89331, #ffe680, #d6540d);
+    color: #5a3e00;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+  header {
+    position: sticky;
+    top: 0; left: 0; right: 0;
+    background: rgba(255 255 153 / 0.85);
+    padding: 16px 24px;
+    box-shadow: 0 2px 8px rgba(170 130 0 / 0.6);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #b45309;
+    user-select: none;
+    z-index: 1000;
+  }
+  main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 48px 16px 64px;
+  }
+  .container {
+    background: rgba(255 243 205 / 0.85);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(204 153 0 / 0.75);
+    max-width: 800px;
+    width: 100%;
+    padding: 32px 40px;
+    backdrop-filter: blur(16px);
+    color: #5a3e00;
+  }
+  /* Page 1 styles */
+  #page1 p {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+  .option-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+  }
+  button.option-btn {
+    background: linear-gradient(135deg, #facc15, #b45309);
+    border: none;
+    color: white;
+    font-weight: 700;
+    padding: 14px 48px;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(250 204 21 / 0.7);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  button.option-btn:hover, button.option-btn:focus {
+    background: linear-gradient(135deg, #d97706, #b45309);
+    outline: none;
+    box-shadow: 0 12px 32px rgba(217 119 6 / 0.8);
+    transform: translateY(-2px);
+  }
+  button.option-btn .material-icons {
+    font-size: 1.5rem;
+  }
+
+  /* Page 2 styles */
+  #page2 {
+    display: none;
+  }
+  #page2 .letter-content {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    position: relative;
+  }
+  #page2 .letter-content p {
+    margin-bottom: 1.5em;
+  }
+  #page2 .letter-content img {
+    width: 80px;
+    height: 80px;
+    border-radius: 14px;
+    object-fit: cover;
+    box-shadow: 0 8px 16px rgba(170 130 0 / 0.4);
+    vertical-align: middle;
+  }
+  /* Images on left or right side with spacing */
+  .img-left {
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 16px;
+    shape-outside: circle(40px);
+  }
+  .img-right {
+    float: right;
+    margin-left: 20px;
+    margin-bottom: 16px;
+    shape-outside: circle(40px);
+  }
+  /* Clearfix after letter paragraphs */
+  #page2 .letter-content::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  /* Page 3 styles */
+  #page3 {
+    display: none;
+    text-align: center;
+  }
+  #page3 .note-box {
+    background: rgba(255 243 205 / 0.85);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(204 153 0 / 0.75);
+    padding: 24px 32px;
+    max-width: 600px;
+    margin: 0 auto 24px auto;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #5a3e00;
+  }
+  #page3 .short-text {
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    color: #7c4a00;
+  }
+
+  /* Hidden Formspree form for automatic submission */
+  #formspree {
+    display: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .container {
+      padding: 24px 24px;
+      border-radius: 14px;
+    }
+    #page2 .letter-content img {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+    }
+    button.option-btn {
+      padding: 12px 36px;
+      font-size: 1rem;
+      gap: 6px;
+    }
+    #page3 .note-box, #page3 .short-text {
+      max-width: 100%;
+      padding: 16px;
+      font-size: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>Message Letter Application</header>
+<main>
+  <section class="container" aria-live="polite">
+    <!-- Page 1: Small paragraph + option boxes -->
+    <section id="page1" tabindex="-1" aria-label="Initial message options">
+      <p>
+        &nbsp;&nbsp;Gửi Châu, <br>
+        &nbsp;&nbsp;Mấy ngày qua nằm viện tớ cũng đã suy nghĩ kĩ, và tớ nghĩ tớ xứng đáng được thuyết phục cậu 1 lần cuối, sau những gì tớ đã làm và đã cố gắng. <br>
+        &nbsp;&nbsp;Tớ nghiêm túc muốn tìm hiểu cậu. Nên tớ thực sự mong cậu sẽ lắng nghe nốt những lời này, từng câu từng chữ tớ đều tận tâm viết chỉ để dành riêng cho cậu thôi.
+        Nếu cậu thấy khó chịu, hãy ấn không luôn, yên tâm lần này chữ không không biết né nữa đâu =))))) <br>
+        &nbsp;&nbsp;Còn nếu ấn có, t mong cậu có đọc hết những gì tớ viết nhé, cũng cũng dài á nên cứ lựa lúc nào rảnh rồi đọc, hoặc cap màn hình để đỡ phải vô lại ha. <br>
+        &nbsp;&nbsp;Và cuối cùng, tớ mong nếu kể cả khi cậu ấn không bây giờ hay không đồng ý lúc sau, chúng ta vẫn sẽ bạn tốt ha. 
+      </p>
+      <div class="option-buttons" role="group" aria-label="Chọn có hoặc không">
+        <button class="option-btn" id="yesBtn" aria-describedby="yesDesc">
+          <span class="material-icons" aria-hidden="true">check_circle</span> Có
+        </button>
+        <button class="option-btn" id="noBtn" aria-describedby="noDesc">
+          <span class="material-icons" aria-hidden="true">cancel</span> Không
+        </button>
+      </div>
+    </section>
+    <!-- Page 2: Letter with longer text and images -->
+    <section id="page2" tabindex="-1" aria-label="Thư chi tiết bạn muốn gửi">
+      <article class="letter-content">
+        <p>
+          Gửi Châu,<br/>
+          Tớ viết bức thư này để có thể nói ra hết những gì có ở trong lòng. Tớ muốn cho bản thân mình
+          , cũng như cậu một cơ hội. Tớ muốn nói ra hết vì sao tớ tin tớ và cậu có thể đồng hành cùng nhau.
+        </p>
+        <p>
+            1. Tớ muốn trở thành supporter của cậu <br>
+Đây là điều tớ tự tin nhất và muốn nói đầu tiên. <br> 
+	⁃	Tớ là một người luôn suy nghĩ cho người khác, nhiều hơn cho chính bản thân mình, đặc biệt là những người tớ yêu quý và thân thiết. Tớ cũng đã lớn và kiểm soát cảm xúc tốt hơn, nên kể cả sau này mọi chuyện không thành, tỉ lệ t trở thành một cái gai muốn quay ngược lại để làm tổn thương cậu cũng gần bằng 0. Tớ không hứa những điều tớ không làm được, và tớ cũng hiểu cậu ngại bắt đầu một mối quan hệ mới nên tớ muốn nói điều trên đầu tiên.<br>
+	⁃	Tớ đơn giản lắm. Cách tớ gửi gắm tình yêu là qua mọi thứ nhỏ nhất. Tớ muốn nấu ăn, làm bánh, pha nước, tặng hoa, tự làm quà DIY cho người tớ yêu, vậy thui. Mấy ngày qua tớ làm không chỉ để impress cậu, mà tớ muốn cho cậu thấy đó đều có thể là normal treat mà tớ có thể làm. Quà tớ tặng tớ luôn muốn tự làm nhiều nhất có thể, tự gấp thiệp cắt hoa để làm mặc dù cũng không khéo lắm :)). Tớ cũng không yêu cầu quá cao trong mối quan hệ, tớ chỉ mong người ấy sau một ngày mệt mỏi sẽ ôm lấy tớ và uống cốc nước tớ pha, và chia sẻ một ngày của cô ấy cho tớ nghe. Nên tớ không tìm đến cậu chỉ vì vã hay chỉ muốn yêu chơi, mà muốn tìm một người đồng hành, tớ có thể quan tâm chăm sóc cậu, ngoài ra còn có thể học hỏi từ cậu nữa chứ.<br>
+	⁃	Vậy nên tớ muốn có thể cùng cậu đi trên con đường cậu chọn, vì tớ biết học Y sẽ phải commit rất nhiều. Tớ muốn mình có thể giúp đỡ cậu chứ không chỉ đơn giản là mối quan hệ yêu đương.<br>
+2. Về tớ<br>
+	⁃	Niềm vui của tớ là được thấy những người xung quanh cười và tớ luôn cố gắng vui vẻ, pha trò nữa. Với tớ, nụ cười của người khác là niềm vui, còn nụ cười của cậu, trước đây và mong là cả trong tương lai, là động lực và lẽ sống của tớ. Lần đầu cậu uống matcha và bánh tớ làm, tớ đã thấy cậu cười rất tươi và vui vẻ nhận,  tớ liền có động lực mua thêm đồ, tìm hiểu thêm cách làm. Cái hôm được ở cùng cậu 1 tiếng để pha matcha, thấy cậu uống cái ực hết nửa cốc, tớ siêu vui. Cả hôm tớ làm kem nữa, chiều htrc thì đi quanh Trâu Quỳ tìm xoài với mật ong, chiều hôm đó thì vừa xay xoài vừa ngủ trong hlab. Nhưng khi thấy cậu vừa cười vừa ăn, rồi khen ngon, tớ biết mọi công sức đều xứng đáng. Tớ không viết những dòng này để kể công, tớ muốn chứng minh rằng bận nhưng chỉ cần cậu nói thích gì, tớ vẫn sẽ cố hết sức.<br>
+	⁃	Đúng là vì vậy nên tớ hơi phụ thuộc vào người khác nhưng tớ cũng đang trong quá trình phát triển và sẽ cố gắng hoàn thiện hơn. Cậu là một người nghiêm túc và tập trung trong công việc nên tớ muốn học nó từ cậu. Mình có thể học tập cùng nhau và đốc thúc nhau cùng cố lên. Vậy nên tớ tin rằng chúng ta đều có thể giúp đỡ và hoàn thiện nhau hơn trong mối quan hệ này. <br>
+3. Kết<br>
+	⁃	Cậu không cần phải trả lời ngay, cứ suy nghĩ cân nhắc kĩ nhé. Nếu thấy tớ có thể là người phù hợp, hãy cho tớ một cơ hội. Như đã nói, tớ muốn nghiêm túc tìm hiểu cậu, muốn biết cậu thích gì ghét gì. Chưa cần phải là một mối quan hệ, tớ vẫn muốn quan tâm cậu. Tớ nghĩ là đáng thử mà 😁, tớ cũng đâu giống 1 kẻ tìm đến cậu vì muốn yêu chơi hay sau này sẽ toxic đâu ha.  Không sau nhỡ không gặp ai tốt hơn thì sao just kidding XD<br>
+	⁃	Nếu đọc hết rồi thì báo tớ hiết nhé, tớ sẽ không giục cậu cho câu trả lời đâu. Cũng đang có nhiều thời gian, cứ cân nhắc nhé. Mình cũng có thể quay lại mối quan hệ như 1,2 tuần qua cũng được. Hãy cho tớ được quan tâm cậu, rồi khi nào cậu đủ niềm tin với tớ rồi tính tiếp. Tớ cũng không muốn dùng cái cốc với cái bình kia pha cho ai khác uống đâu, chắc chúng nó cũng thấy thế á 😤 Thấy option nì ổn nhất nè, quay lại tớ lại pha matcha cho uống nha.<br>
+	⁃	Bên trên là toàn bộ những gì tớ mong cậu biết. Nếu cậu thực sự đã đọc hết toàn bộ tới đây, tớ thực sự rất vui =))) vì bỏ công sức ra viết văn ai chả muốn người đọc đọc hết đúng không. Tớ không hề thích viết lách, chỉ là vẫn còn quá nhiều thứ muốn chia sẻ với cậu hoi.<br>
+    Chúc cậu một ngày vui vẻ nhé~
+     
+        </p>
+      </article>
+    </section>
+    <!-- Page 3: Note + short message -->
+    <section id="page3" tabindex="-1" aria-label="Phản hồi đã gửi">
+      <div class="short-text">
+        Ừm nếu cậu chọn không luôn thì thôi vậy, hẹn gặp năm sau ra chơi frisbee tiếp nhé. Từ giờ tớ cũng không làm phiền cậu về vấn đề này nữa. Chúc bạn một ngày vui vẻ!
+      </div>
+    </section>
+    <!-- Hidden Formspree form for automatic submission -->
+    <section id="formspree" aria-hidden="true">
+      <form id="hiddenForm" action="https://formspree.io/f/mzzgvyan" method="POST" novalidate>
+        <input type="hidden" name="message" value="User chose No - automatic submission from website." />
+      </form>
+    </section>
+  </section>
+</main>
+<script>
+  // Elements references
+  const page1 = document.getElementById('page1');
+  const page2 = document.getElementById('page2');
+  const page3 = document.getElementById('page3');
+  const formspree = document.getElementById('formspree');
+  const yesBtn = document.getElementById('yesBtn');
+  const noBtn = document.getElementById('noBtn');
+  const hiddenForm = document.getElementById('hiddenForm');
+
+  // Show Page 2 on Yes click
+  yesBtn.addEventListener('click', () => {
+    page1.style.display = 'none';
+    page3.style.display = 'none';
+    formspree.style.display = 'none';
+    page2.style.display = 'block';
+    page2.focus();
+  });
+
+  // Auto submit hidden form on No click then show page 3
+  noBtn.addEventListener('click', () => {
+    page1.style.display = 'none';
+    page2.style.display = 'none';
+    formspree.style.display = 'none'; // keep hidden
+    
+    // Submit form automatically
+    hiddenForm.submit();
+
+    // Show page3 note and message
+    page3.style.display = 'block';
+    page3.focus();
+  });
+
+  // Initial focus on page1 container for accessibility
+  page1.focus();
+</script>
+</body>
+</html>
+
